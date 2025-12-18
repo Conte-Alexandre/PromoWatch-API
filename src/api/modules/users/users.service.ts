@@ -1,12 +1,7 @@
 import bcrypt from "bcrypt";
 import { UserRepository } from "./users.repository.js";
 import prisma from "../../config/prisma.js";
-import type {
-  NewUser,
-  User,
-  UpdateUser,
-  UserCreationData,
-} from "./users.model.js";
+import type { NewUser, User, UpdateUser } from "./users.model.js";
 
 const SALT_ROUNDS = 10;
 const userRepository = new UserRepository();
@@ -42,6 +37,16 @@ export class UserService {
   async getById(id: string): Promise<User | null> {
     return userRepository.findById(id);
   }
-
-  // [TODO] Ajouter les méthodes update et delete ici
+  async update(id: string, data: UpdateUser): Promise<User | null> {
+    const userData = {
+      name: data.name,
+      profilePictureUrl: data.profilePictureUrl,
+      niche: data.niche,
+      companyName: data.companyName,
+    };
+    return await userRepository.update(id, userData);
+  }
+  async deleteById(id: string): Promise<void> {
+    await userRepository.delete(id);
+  }
 }

@@ -3,7 +3,6 @@ import type { NewUser, User, UpdateUser } from "./users.model.js";
 type UserWithPassword = Awaited<ReturnType<typeof prisma.user.findUnique>>;
 
 export class UserRepository {
-  // --- C R E A T E (Création d'un nouvel utilisateur) ---
   async create(data: NewUser, hashedPassword: string): Promise<User> {
     try {
       const user = await prisma.user.create({
@@ -19,14 +18,13 @@ export class UserRepository {
       return safeUser as User;
     } catch (error) {
       if (error instanceof Error) {
-        console.error("❌ [REPOSITORY] Message:", error.message);
-        console.error("❌ [REPOSITORY] Stack:", error.stack);
+        console.error(" [REPOSITORY] Message:", error.message);
+        console.error(" [REPOSITORY] Stack:", error.stack);
       }
       throw error;
     }
   }
 
-  // --- R E A D (Trouver par ID) ---
   async findById(id: string): Promise<User | null> {
     try {
       const user = await prisma.user.findUnique({
@@ -58,13 +56,30 @@ export class UserRepository {
     }
   }
 
-  // --- U P D A T E ---
   async update(id: string, data: UpdateUser): Promise<User | null> {
-    return null;
+    try {
+      const user = await prisma.user.update({
+        where: { id: id },
+        data: {
+          name: data.name,
+          profilePictureUrl: data.profilePictureUrl,
+          niche: data.niche,
+          companyName: data.companyName,
+        },
+      });
+      const { password, ...safeUser } = user;
+      return safeUser as User;
+    } catch (error) {
+      throw error;
+    }
   }
 
-  // --- D E L E T E ---
   async delete(id: string): Promise<boolean> {
-    return false;
+    try {
+      await prisma.user.delete({ where: { id: id } });
+      return true;
+    } catch {
+      return false;
+    }
   }
 }
