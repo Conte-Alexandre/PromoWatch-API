@@ -1,6 +1,7 @@
 {
   "watch": ["src"],
-  "ext": "ts",
-  "ignore": ["dist"],
-  "exec": "tsx src/api/server.ts"
+  "ext": "ts,js,json",
+  "ignore": ["dist", "node_modules"],
+  "exec": "tsx src/api/server.ts",
+  "legacyWatch": true
 }
