@@ -22,9 +22,9 @@ export const loginController = async (
     );
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // HTTPS en production uniquement
-      sameSite: "strict", // Protection contre le CSRF
-      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 jours
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 30 * 24 * 60 * 60 * 1000,
     });
     res.status(200).json({
       message: "Connexion réussie",
