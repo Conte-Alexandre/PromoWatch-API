@@ -6,7 +6,7 @@ export type User = {
   id: string;
   email: string;
 
-  name: string;
+  name: string | null;
   profilePictureUrl: string | null;
 
   role: UserRole;

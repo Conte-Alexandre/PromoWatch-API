@@ -2,7 +2,7 @@ import express from "express";
 import type { Application } from "express";
 
 import usersRoutes from "./modules/users/users.routes";
-
+import authRoutes from "./modules/auth/auth.routes";
 const createApp = (): Application => {
   const app = express();
 
@@ -17,6 +17,7 @@ const createApp = (): Application => {
   });
 
   app.use("/api/v1/users", usersRoutes);
+  app.use("/api/v1/auth", authRoutes);
 
   return app;
 };
