@@ -11,7 +11,7 @@ model User {
   id          String   @id @default(uuid()) @db.VarChar(36)
   email       String   @unique
   password    String
-  name        String?
+  name        String
   role        String   @default("Creator")
   creationDate DateTime @default(now()) @map("created_at")
   lastLogin   DateTime?
@@ -20,6 +20,20 @@ model User {
   profilePictureUrl  String?
   niche             String?
   companyName       String?
-  
+  refreshTokens  RefreshToken[] 
   @@map("users") // Indique à Prisma que la table SQL s'appelle "users"
+}
+model RefreshToken {
+  id             String   @id @default(uuid()) @db.VarChar(36)
+  token          String   @unique
+  userId         String   @db.VarChar(36)
+  expiresAt      DateTime
+  isRevoked      Boolean  @default(false)
+  createdAt      DateTime @default(now()) @map("created_at")
+  
+  // Relation avec User
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("refresh_tokens")
+  @@index([userId])
 }

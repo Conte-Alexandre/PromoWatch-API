@@ -6,14 +6,16 @@ import {
   updateUserByIdController,
   deleteUserByIdController,
 } from "./users.controller";
-
+import { verifyToken } from "../../middlewares/auth.middleware";
+import { authorize } from "../../middlewares/authorize.middleware";
+import { isOwnerOrAdmin } from "../../middlewares/check-owner.middleware";
 const router = Router();
 
 router.post("/", createUserController);
 
 router.get("/:id", getUserByIdController);
 
-router.put("/:id", updateUserByIdController);
+router.put("/:id", authorize, updateUserByIdController);
 
-router.delete("/:id", deleteUserByIdController);
+router.delete("/:id", verifyToken, isOwnerOrAdmin, deleteUserByIdController);
 export default router;
