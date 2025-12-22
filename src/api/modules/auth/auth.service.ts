@@ -36,7 +36,6 @@ export class AuthService {
       throw new Error("erreur lors de l'authentification");
     }
     const { password: _password, ...userWithoutPassword } = user;
-    const userToken = this.generateTokens;
     const cleanUser: User = {
       ...userWithoutPassword,
       role: userWithoutPassword.role as UserRole,

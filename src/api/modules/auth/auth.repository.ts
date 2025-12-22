@@ -31,7 +31,9 @@ export class AuthRepository {
         where: { token: tokenValue },
         data: { isRevoked: true },
       });
-    } catch (error) {}
+    } catch (error) {
+      throw error;
+    }
   }
   async revokeAllUserTokens(userId: string) {
     try {
