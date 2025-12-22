@@ -40,3 +40,38 @@ export const loginController = async (
     });
   }
 };
+export const refreshController = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const refreshToken = req.cookies.refreshToken;
+  if (!refreshToken) {
+    res
+      .status(401)
+      .json({ message: "Session expirée, veuillez vous reconnecter." });
+    return;
+  }
+
+  try {
+    const { accessToken } = await authService.refreshAccessToken(refreshToken);
+
+    res.status(200).json({ accessToken });
+  } catch (error) {
+    res.status(403).json({ message: "Session invalide." });
+  }
+};
+export const logoutController = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const refreshToken = req.cookies.refreshToken;
+  if (refreshToken) {
+    authService.logout(refreshToken);
+  }
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  });
+  res.status(200).json({ message: "Déconnexion réussie" });
+};

@@ -19,6 +19,7 @@ export class AuthRepository {
     try {
       return await prisma.refreshToken.findUnique({
         where: { token: tokenValue },
+        include: { user: true },
       });
     } catch (error) {
       throw error;

@@ -53,4 +53,30 @@ export class AuthService {
       ...tokens,
     };
   }
+  async refreshAccessToken(tokenValue: string) {
+    const decoded = jwt.verify(
+      tokenValue,
+      process.env.REFRESH_TOKEN_SECRET!
+    ) as { userId: string };
+
+    const storedToken = await authRepository.findRefreshToken(tokenValue);
+
+    if (!storedToken) {
+      throw new Error("Token de rafraîchissement non reconnu");
+    }
+
+    if (storedToken.isRevoked) {
+      throw new Error("Ce jeton a été révoqué. Veuillez vous reconnecter.");
+    }
+    const newAccessToken = jwt.sign(
+      { userId: storedToken.userId, role: storedToken.user.role },
+      process.env.ACCESS_TOKEN_SECRET!,
+      { expiresIn: "15m" }
+    );
+
+    return { accessToken: newAccessToken };
+  }
+  async logout(tokenValue: string): Promise<void> {
+    await authRepository.revokeRefreshToken(tokenValue);
+  }
 }
