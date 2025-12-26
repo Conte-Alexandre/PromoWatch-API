@@ -7,10 +7,12 @@ import { User, UserRole } from "../users/users.model.js";
 const userRepository = new UserRepository();
 const authRepository = new AuthRepository();
 
-const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || "access_secret";
-const REFRESH_TOKEN_SECRET =
-  process.env.REFRESH_TOKEN_SECRET || "refresh_secret";
+if (!process.env.ACCESS_TOKEN_SECRET || !process.env.REFRESH_TOKEN_SECRET) {
+  throw new Error("Secrets JWT manquants");
+}
 
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
 export class AuthService {
   private generateTokens(payload: TokenPayload) {
     const accessToken = jwt.sign(payload, ACCESS_TOKEN_SECRET, {
