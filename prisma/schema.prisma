@@ -21,7 +21,7 @@ model User {
   niche             String?
   companyName       String?
   refreshTokens  RefreshToken[] 
-  @@map("users") // Indique à Prisma que la table SQL s'appelle "users"
+  @@map("users") 
 }
 model RefreshToken {
   id             String   @id @default(uuid()) @db.VarChar(36)
