@@ -12,7 +12,7 @@ Le projet est construit sur une architecture modulaire avec séparation des resp
 - **Gestion des utilisateurs :** CRUD complet avec système de rôles (user, admin)
 - **Contrôle d'accès :** Middlewares pour la vérification de token, gestion des rôles et vérification de propriété des ressources
 - **Architecture modulaire :** Organisation par modules (auth, users, sponsors, billing, data_analysis) avec pattern MVC
-- **Base de données :** Gestion avec Prisma ORM et PostgreSQL
+- **Base de données :** Gestion avec Prisma ORM et MySQL / MariaDB
 - **Type-safety :** Développement entièrement typé avec TypeScript
 - **Sécurité :** Hachage des mots de passe avec bcrypt, validation des données, protection CORS
 
@@ -29,7 +29,7 @@ Le projet est construit sur une architecture modulaire avec séparation des resp
 ### Base de données
 
 - [Prisma](https://www.prisma.io/) - ORM moderne
-- [mariadb](https://go.mariadb.com/high-availability-guide-MariaDB-whitepaper.html?utm_source=google&utm_medium=ppc&utm_campaign=enterprise&qgad=771163141187&qgterm=mariadb&utm_source=google&utm_medium=ppc&utm_campaign=22939587589_182246370697&utm_term=g_kwd-295966390790_e_mariadb&utm_content=771163141187&locationid=1006094&device=c_c&gad_source=1&gad_campaignid=22939587589&gbraid=0AAAAADyOKhPT57aNH_5_3L_Is9IdDML1t&gclid=CjwKCAiAu67KBhAkEiwAY0jAldjBDaA2CR7iv1rmXm80tr_UKXqHgpVIRGGPxS5xJ0O6427Dn0Sk5hoCQrgQAvD_BwE) - Base de données relationnelle
+- [MySQL / MariaDB](https://go.mariadb.com/high-availability-guide-MariaDB-whitepaper.html?utm_source=google&utm_medium=ppc&utm_campaign=enterprise&qgad=771163141187&qgterm=mariadb&utm_source=google&utm_medium=ppc&utm_campaign=22939587589_182246370697&utm_term=g_kwd-295966390790_e_mariadb&utm_content=771163141187&locationid=1006094&device=c_c&gad_source=1&gad_campaignid=22939587589&gbraid=0AAAAADyOKhPT57aNH_5_3L_Is9IdDML1t&gclid=CjwKCAiAu67KBhAkEiwAY0jAldjBDaA2CR7iv1rmXm80tr_UKXqHgpVIRGGPxS5xJ0O6427Dn0Sk5hoCQrgQAvD_BwE) - Base de données relationnelle
 
 ### Sécurité & Authentification
 
@@ -93,10 +93,11 @@ src/
    PORT=5000
 
    # URL de connexion à la base de données
-   DATABASE_URL="postgresql://user:password@localhost:5432/promowatch?schema=public"
-
+   DATABASE_URL="mysql://user:password@localhost:3306/promowatch"
    # Secret pour signer les tokens JWT (chaîne aléatoire longue et sécurisée)
-   JWT_SECRET=votre_super_secret_jwt_ici_tres_securise
+   ACCESS_TOKEN_SECRET=secret_long_et_aleatoire
+   REFRESH_TOKEN_SECRET=autre_secret_long_et_aleatoire
+
 
    # Configuration YouTube API (optionnel)
    YOUTUBE_API_KEY=votre_cle_api_youtube
