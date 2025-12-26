@@ -55,10 +55,9 @@ export class AuthService {
     };
   }
   async refreshAccessToken(tokenValue: string) {
-    const decoded = jwt.verify(
-      tokenValue,
-      process.env.REFRESH_TOKEN_SECRET!
-    ) as { userId: string };
+    const decoded = jwt.verify(tokenValue, REFRESH_TOKEN_SECRET) as {
+      userId: string;
+    };
 
     const storedToken = await authRepository.findRefreshToken(tokenValue);
 
@@ -71,7 +70,7 @@ export class AuthService {
     }
     const newAccessToken = jwt.sign(
       { userId: storedToken.userId, role: storedToken.user.role },
-      process.env.ACCESS_TOKEN_SECRET!,
+      ACCESS_TOKEN_SECRET,
       { expiresIn: "15m" }
     );
 

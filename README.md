@@ -140,7 +140,7 @@ npm start
 ### Inscription
 
 ```http
-POST /api/auth/register
+POST /api/auth/v1/register
 Content-Type: application/json
 
 {
@@ -154,7 +154,7 @@ Content-Type: application/json
 ### Connexion
 
 ```http
-POST /api/auth/login
+POST /api/auth/v1/login
 Content-Type: application/json
 
 {
@@ -182,7 +182,7 @@ Content-Type: application/json
 Ajoutez le token dans le header `Authorization` :
 
 ```http
-GET /api/users/me
+GET /api/v1/users/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 
