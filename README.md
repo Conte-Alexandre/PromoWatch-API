@@ -204,7 +204,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 ## 📚 Documentation
 
-La documentation technique complète de l'API, détaillant toutes les classes, fonctions et middlewares, est disponible en ligne : [Accéder à la documentation](https://votre-lien-documentation.com)
+La documentation technique complète de l'API, détaillant toutes les classes, fonctions et middlewares, est disponible en ligne : [Accéder à la documentation](#)
 
 ### Scripts disponibles
 
