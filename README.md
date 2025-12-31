@@ -1,10 +1,25 @@
 # PromoWatch API
 
-`PromoWatch` est une API RESTful backend développée avec Node.js, Express.js et TypeScript, conçue pour gérer un système complet de promotions et d'utilisateurs.
+`PromoWatch` est une plateforme intelligente de veille et de mise en relation entre créateurs de contenu et marques (sponsors).
 
-Le projet est construit sur une architecture modulaire avec séparation des responsabilités, sécurise les endpoints à l'aide de JSON Web Tokens (JWT), utilise Prisma comme ORM pour la gestion de la base de données, et gère les permissions via des middlewares personnalisés.
+L'API utilise le Machine Learning et l'analyse de données pour identifier automatiquement les partenariats publicitaires sur des plateformes comme YouTube, offrant ainsi aux influenceurs et aux agences un répertoire dynamique des opportunités de sponsoring.
 
 ---
+
+## 💡 Le Projet
+
+Le Problème
+Les jeunes influenceurs et les petites agences peinent souvent à identifier les marques qui investissent réellement dans le marketing d'influence ou à trouver des contacts pertinents pour des partenariats.
+
+Notre Solution
+Analyse Automatisée (IA) : Scan des descriptions de vidéos (YouTube/Twitch) pour détecter les placements de produits.
+
+Répertoire Dynamique : Une base de données structurée des marques actives dans le milieu de l'influence.
+
+Mise en Relation : Centralisation des critères de recherche des marques et de l'historique des créateurs.
+
+---
+
 
 ## ✨ Fonctionnalités
 
@@ -52,7 +67,6 @@ src/
 │   ├── modules/         # Modules métier
 │   │   ├── auth/        # Authentification (login, register)
 │   │   ├── users/       # Gestion des utilisateurs
-│   │   ├── billing/     # Facturation
 │   │   ├── data_analysis/  # Analyse de données
 │   │   └── sponsors/    # Gestion des sponsors
 │   └── types/           # Types TypeScript globaux
