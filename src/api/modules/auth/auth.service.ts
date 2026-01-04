@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import { AuthRepository } from "./auth.repository";
 import { UserRepository } from "../users/users.repository";
-import { TokenPayload, AuthResponse } from "./auth.model.js";
+import { TokenPayload, AuthResponse } from "./auth.model";
 import bcrypt from "bcrypt";
-import { User, UserRole } from "../users/users.model.js";
+import { User, UserRole } from "../users/users.model";
 const userRepository = new UserRepository();
 const authRepository = new AuthRepository();
 

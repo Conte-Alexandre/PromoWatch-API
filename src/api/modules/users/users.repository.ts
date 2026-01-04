@@ -1,5 +1,5 @@
-import prisma from "../../config/prisma.js";
-import type { NewUser, User, UpdateUser } from "./users.model.js";
+import prisma from "../../config/prisma";
+import type { NewUser, User, UpdateUser } from "./users.model";
 type UserWithPassword = Awaited<ReturnType<typeof prisma.user.findUnique>>;
 
 export class UserRepository {
