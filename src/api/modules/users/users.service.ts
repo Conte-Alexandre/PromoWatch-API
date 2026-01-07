@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
-import { UserRepository } from "./users.repository.js";
+import { UserRepository } from "./users.repository";
 import prisma from "../../config/prisma.js";
-import type { NewUser, User, UpdateUser } from "./users.model.js";
+import type { NewUser, User, UpdateUser } from "./users.model";
 
 const SALT_ROUNDS = 10;
 const userRepository = new UserRepository();
