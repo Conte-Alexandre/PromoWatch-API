@@ -37,3 +37,14 @@ model RefreshToken {
   @@map("refresh_tokens")
   @@index([userId])
 }
+model Sponsor{
+  id String @id @default(uuid()) 
+  name String   @unique
+  industry String?
+  logoUrl String? @map("logo_url")
+  websiteUrl String? @map("website_url")
+  description String? @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("sponsor")
+}
