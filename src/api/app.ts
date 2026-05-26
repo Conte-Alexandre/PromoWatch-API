@@ -3,6 +3,7 @@ import type { Application } from "express";
 import cookieParser from "cookie-parser";
 import usersRoutes from "./modules/users/users.routes";
 import authRoutes from "./modules/auth/auth.routes";
+import sponsorsRoutes from "./modules/sponsors/sponsors.routes";
 const createApp = (): Application => {
   const app = express();
 
@@ -18,7 +19,7 @@ const createApp = (): Application => {
 
   app.use("/api/v1/users", usersRoutes);
   app.use("/api/v1/auth", authRoutes);
-
+  app.use("/api/v1/sponsors", sponsorsRoutes);
   return app;
 };
 
